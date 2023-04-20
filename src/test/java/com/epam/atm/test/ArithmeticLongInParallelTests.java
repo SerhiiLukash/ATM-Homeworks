@@ -9,17 +9,11 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Execution(ExecutionMode.CONCURRENT)
-@ExtendWith(CalculatorParameterResolver.class)
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class ArithmeticLongInParallelTests {
- static   Calculator calculator;
-    @BeforeAll
-    public  void preTest () {
-         calculator= new Calculator();
-    }
+public class ArithmeticLongInParallelTests extends BaseTest{
+
+
 
 
     @Test

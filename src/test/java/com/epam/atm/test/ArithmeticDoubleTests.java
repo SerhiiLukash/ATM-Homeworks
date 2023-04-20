@@ -12,10 +12,7 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Execution(ExecutionMode.CONCURRENT)
-@ExtendWith(CalculatorParameterResolver.class)
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class ArithmeticDoubleTests {
  static   Calculator calculator;

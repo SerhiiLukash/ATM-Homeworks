@@ -9,6 +9,13 @@
   <url>http://maven.apache.org</url>
 
      <dependencies>
+         <dependency>
+             <groupId>com.epam.tat.module4</groupId>
+             <artifactId>calculator-1.0</artifactId>
+             <version>1.0</version>
+             <scope>system</scope>
+             <systemPath>${project.basedir}/lib/calculator-1.0.jar</systemPath>
+         </dependency>
       <dependency>
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
