@@ -12,11 +12,12 @@ public class ComposePage extends PageObject {
     }
 
     public By getComposeBy() {
+        waitElementToBeClicable(composeBy);
         return composeBy;
     }
 
     public FillEmailPage compose() {
-        waitElementToBeClicable(composeBy);
+
         driver.findElement(composeBy).click();
         return new FillEmailPage(driver);
     }

@@ -2,6 +2,7 @@ package com.epam.atm.tests.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class LogOutPage extends PageObject {
 
@@ -15,7 +16,8 @@ public class LogOutPage extends PageObject {
     public void logOut() {
 
         driver.findElement(menuButtonBy).click();
-        driver.switchTo().frame(driver.findElement(By.cssSelector("//iframe[@name='account']")));
+        WebElement iframe = driver.findElement(By.cssSelector("//iframe[@name='account']"));
+        driver.switchTo().frame(iframe);
         waitElementToBeClicable(logoutBy);
         driver.findElement(logoutBy).click();
 
