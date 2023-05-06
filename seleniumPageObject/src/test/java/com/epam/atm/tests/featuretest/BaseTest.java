@@ -8,11 +8,16 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class BaseTest {
     protected WebDriver driver;
+
+    // TODO: Seems never used.
     private By elementBy;
 
+
+    // TODO: seems setup could be mark with some Before annotations.
     public void setupClass() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
+        // TODO: Why do we need incognito mode?
         options.addArguments("--incognito");
 
         driver = new ChromeDriver(options);

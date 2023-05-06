@@ -20,6 +20,7 @@ public class LoginPage extends PageObject {
 
 
     public ComposePage loginValidUser(String url, String textName, String password) {
+        // TODO: I suggest to move navigation to upper logic and leave here only stuff related to actual login.
         driver.get(url);
         driver.findElement(textNameBy).sendKeys(textName);
         driver.findElement(nextNameBy).click();

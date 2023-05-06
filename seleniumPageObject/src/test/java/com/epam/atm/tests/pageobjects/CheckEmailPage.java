@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class CheckEmailPage extends PageObject {
 
+    // TODO: it is not good idea to hardcode email in locators. It should be dynamic.
     private By emailBy = By.xpath("//*[@email='vasiliy.luk52@gmail.com']");
     private By sendButtonBy = By.xpath("//div[text()='Send']");
 

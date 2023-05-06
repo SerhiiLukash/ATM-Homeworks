@@ -23,13 +23,19 @@ public class SendEmailTest extends BaseTest {
 
         setupClass();
         LoginPage loginPage = new LoginPage(driver);
+        // TODO: Seems URL is extra in this case. It is login page, so assumption that you already get to the right URL in previous actions.
         ComposePage composePage = loginPage.loginValidUser(url, textName, password);
+        // TODO: we could create separate method on the page and call it isUserLogin
         Assert.assertTrue(composePage.confirmationFolder(composePage.getComposeBy())); // Check if user is logged in
+        // TODO: as you return page from class you could use chain of invocations composePage.compose().fillInEmail(body, subject, recipient);
         FillEmailPage fillEmailPage = composePage.compose();
+        // TODO: we could introduce some Business objects like email, user and use them intead of 3 strings.
         fillEmailPage.fillInEmail(body, subject, recipient);
+        // TODO: is draft page olways shown when we close compose?
         DraftFolderPage draftFolderPage = fillEmailPage.close();
         CheckEmailPage checkEmailPage = draftFolderPage.openMailInDrafts();
         waitExplicit();
+        // TODO: you declared those things as veriable subject, recipient, I suggest you them instead of strings.
         assertEquals("test subject", fillEmailPage.getAttributeBy(fillEmailPage.getTextSubjectBy(), "value"));
         //  assertEquals( "test body",fillEmailPage.getAttributeBy(fillEmailPage.getTextBodyBy(),"value"));// Can't find right locator
         assertEquals("vasiliy.luk52@gmail.com", checkEmailPage.getAttributeBy(checkEmailPage.getEmailBy(), "email"));

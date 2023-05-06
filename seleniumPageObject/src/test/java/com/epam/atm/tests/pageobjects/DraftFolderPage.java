@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class DraftFolderPage extends PageObject {
 
+    //TODO: Not good idea to hardcode URL in locators. On the real project you could have several envs like qa.mail.google, dev.mail.google, etc.
     private By draftBy = By.xpath("//a[@href='https://mail.google.com/mail/u/0/#drafts']//parent::span");
     private By draftFolderBy = By.xpath("//*[text()='Drafts']");
     private By clickOnRowBy = By.xpath("//*[@class='bog']//span[text()='test subject']");
