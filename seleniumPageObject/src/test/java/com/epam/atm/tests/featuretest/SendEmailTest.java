@@ -2,7 +2,10 @@ package com.epam.atm.tests.featuretest;
 
 import com.epam.atm.tests.pageobjects.*;
 import org.junit.Assert;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.net.MalformedURLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,10 +21,34 @@ public class SendEmailTest extends BaseTest {
 
     private final static String recipient = "vasiliy.luk52@gmail.com";
 
+    @DisplayName("test Email for Chrome")
     @Test
-    public void testLogin() {
+    public void testLoginChrome() throws MalformedURLException {
 
-        setupClass();
+        setupClassChrome();
+        LoginPage loginPage = new LoginPage(driver);
+        ComposePage composePage = loginPage.loginValidUser(url, textName, password);
+        Assert.assertTrue(composePage.confirmationFolder(composePage.getComposeBy())); // Check if user is logged in
+        FillEmailPage fillEmailPage = composePage.compose();
+        fillEmailPage.fillInEmail(body, subject, recipient);
+        DraftFolderPage draftFolderPage = fillEmailPage.close();
+        CheckEmailPage checkEmailPage = draftFolderPage.openMailInDrafts();
+        waitExplicit();
+        assertEquals("test subject", fillEmailPage.getAttributeBy(fillEmailPage.getTextSubjectBy(), "value"));
+        //  assertEquals( "test body",fillEmailPage.getAttributeBy(fillEmailPage.getTextBodyBy(),"value"));// Can't find right locator
+        assertEquals("vasiliy.luk52@gmail.com", checkEmailPage.getAttributeBy(checkEmailPage.getEmailBy(), "email"));
+        SentFolderPage sentFolderPage = checkEmailPage.send();
+        Assert.assertTrue(sentFolderPage.confirmationFolder(sentFolderPage.getCheckDraftBy())); // check if the folder "draft" is empty
+        LogOutPage logOutPage = sentFolderPage.sentEmail();
+        Assert.assertTrue(sentFolderPage.confirmationFolder(sentFolderPage.getCheckSentBy())); // check if email in the "Sent" folder
+        logOutPage.logOut();
+    }
+
+    @DisplayName("test Email for Edge")
+    @Test
+    public void testLoginEdge() throws MalformedURLException {
+
+        setupClassEdge();
         LoginPage loginPage = new LoginPage(driver);
         ComposePage composePage = loginPage.loginValidUser(url, textName, password);
         Assert.assertTrue(composePage.confirmationFolder(composePage.getComposeBy())); // Check if user is logged in
