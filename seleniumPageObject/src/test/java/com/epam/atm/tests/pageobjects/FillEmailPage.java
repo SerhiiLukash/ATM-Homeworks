@@ -15,6 +15,7 @@ public class FillEmailPage extends PageObject {
         super(driver);
     }
 
+    // TODO: Could introduce class 'email' and use it instead of 3 strings.
     public void fillInEmail(String body, String subject, String recipient) {
 
         waitElementToBeClicable(textBodyBy);
