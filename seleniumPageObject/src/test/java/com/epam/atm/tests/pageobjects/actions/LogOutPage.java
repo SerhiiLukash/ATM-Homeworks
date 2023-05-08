@@ -1,10 +1,11 @@
-package com.epam.atm.tests.pageobjects;
+package com.epam.atm.tests.pageobjects.actions;
 
+import com.epam.atm.tests.pageobjects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LogOutPage extends PageObject {
+public class LogOutPage extends BasePage {
 
     //TODO: Again not good to hardcode URL domain. At some point company may decide to switch DNS or use some caching layer, security layer, replace with load balancer URL etc.
     private By menuButtonBy = By.xpath("//a[@href='https://accounts.google.com/SignOutOptions?hl=en&continue=https://mail.google.com&service=mail']");

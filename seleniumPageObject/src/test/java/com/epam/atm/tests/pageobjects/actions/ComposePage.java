@@ -1,9 +1,10 @@
-package com.epam.atm.tests.pageobjects;
+package com.epam.atm.tests.pageobjects.actions;
 
+import com.epam.atm.tests.pageobjects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ComposePage extends PageObject {
+public class ComposePage extends BasePage {
 
     private By composeBy = By.xpath("//div[text()='Compose']");
 

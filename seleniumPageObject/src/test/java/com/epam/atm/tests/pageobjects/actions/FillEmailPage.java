@@ -1,9 +1,11 @@
-package com.epam.atm.tests.pageobjects;
+package com.epam.atm.tests.pageobjects.actions;
 
+import com.epam.atm.tests.pageobjects.BasePage;
+import com.epam.atm.tests.pageobjects.folders.DraftFolderPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class FillEmailPage extends PageObject {
+public class FillEmailPage extends BasePage {
 
     private By textBodyBy = By.xpath("//div[@aria-label='Message Body']");
     private By textSubjectBy = By.name("subjectbox");

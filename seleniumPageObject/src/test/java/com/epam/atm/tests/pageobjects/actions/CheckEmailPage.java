@@ -1,9 +1,11 @@
-package com.epam.atm.tests.pageobjects;
+package com.epam.atm.tests.pageobjects.actions;
 
+import com.epam.atm.tests.pageobjects.BasePage;
+import com.epam.atm.tests.pageobjects.folders.SentFolderPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckEmailPage extends PageObject {
+public class CheckEmailPage extends BasePage {
 
     // TODO: it is not good idea to hardcode email in locators. It should be dynamic.
     private By emailBy = By.xpath("//*[@email='vasiliy.luk52@gmail.com']");

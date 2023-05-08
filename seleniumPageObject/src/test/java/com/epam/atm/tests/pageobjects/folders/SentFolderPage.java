@@ -1,9 +1,11 @@
-package com.epam.atm.tests.pageobjects;
+package com.epam.atm.tests.pageobjects.folders;
 
+import com.epam.atm.tests.pageobjects.BasePage;
+import com.epam.atm.tests.pageobjects.actions.LogOutPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class SentFolderPage extends PageObject {
+public class SentFolderPage extends BasePage {
 
     private By checkDraftBy = By.xpath("//*[text()[contains(.,'Saving')]]");
     private By sentEmailBy = By.xpath("//a[@href='https://mail.google.com/mail/u/0/#sent']");

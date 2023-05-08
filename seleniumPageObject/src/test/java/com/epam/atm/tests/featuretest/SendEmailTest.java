@@ -1,6 +1,8 @@
 package com.epam.atm.tests.featuretest;
 
-import com.epam.atm.tests.pageobjects.*;
+import com.epam.atm.tests.pageobjects.actions.*;
+import com.epam.atm.tests.pageobjects.folders.DraftFolderPage;
+import com.epam.atm.tests.pageobjects.folders.SentFolderPage;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -23,27 +25,29 @@ public class SendEmailTest extends BaseTest {
 
         setupClass();
         LoginPage loginPage = new LoginPage(driver);
-        // TODO: Seems URL is extra in this case. It is login page, so assumption that you already get to the right URL in previous actions.
-        ComposePage composePage = loginPage.loginValidUser(url, textName, password);
+        driver.get(url);
+        // FIXED - TODO: Seems URL is extra in this case. It is login page, so assumption that you already get to the right URL in previous actions.
+        ComposePage composePage = loginPage.loginValidUser(textName, password);
         // TODO: we could create separate method on the page and call it isUserLogin
-        Assert.assertTrue(composePage.confirmationFolder(composePage.getComposeBy())); // Check if user is logged in
+        Assert.assertTrue(composePage.ifElementIsDisplayed(composePage.getComposeBy())); // Check if user is logged in
         // TODO: as you return page from class you could use chain of invocations composePage.compose().fillInEmail(body, subject, recipient);
         FillEmailPage fillEmailPage = composePage.compose();
         // TODO: we could introduce some Business objects like email, user and use them intead of 3 strings.
         fillEmailPage.fillInEmail(body, subject, recipient);
-        // TODO: is draft page olways shown when we close compose?
+        // Yes - we don't send the email. TODO: is draft page olways shown when we close compose?
         DraftFolderPage draftFolderPage = fillEmailPage.close();
         CheckEmailPage checkEmailPage = draftFolderPage.openMailInDrafts();
         waitExplicit();
-        // TODO: you declared those things as veriable subject, recipient, I suggest you them instead of strings.
-        assertEquals("test subject", fillEmailPage.getAttributeBy(fillEmailPage.getTextSubjectBy(), "value"));
+        // FIXED. TODO: you declared those things as veriable subject, recipient, I suggest you them instead of strings.
+        assertEquals(subject, fillEmailPage.getAttributeBy(fillEmailPage.getTextSubjectBy(), "value"));
         //  assertEquals( "test body",fillEmailPage.getAttributeBy(fillEmailPage.getTextBodyBy(),"value"));// Can't find right locator
-        assertEquals("vasiliy.luk52@gmail.com", checkEmailPage.getAttributeBy(checkEmailPage.getEmailBy(), "email"));
+        assertEquals(recipient, checkEmailPage.getAttributeBy(checkEmailPage.getEmailBy(), "email"));
         SentFolderPage sentFolderPage = checkEmailPage.send();
-        Assert.assertTrue(sentFolderPage.confirmationFolder(sentFolderPage.getCheckDraftBy())); // check if the folder "draft" is empty
+        Assert.assertTrue(sentFolderPage.ifElementIsDisplayed(sentFolderPage.getCheckDraftBy())); // check if the folder "draft" is empty
         LogOutPage logOutPage = sentFolderPage.sentEmail();
-        Assert.assertTrue(sentFolderPage.confirmationFolder(sentFolderPage.getCheckSentBy())); // check if email in the "Sent" folder
+        Assert.assertTrue(sentFolderPage.ifElementIsDisplayed(sentFolderPage.getCheckSentBy())); // check if email in the "Sent" folder
         logOutPage.logOut();
     }
+
 
 }

@@ -1,9 +1,11 @@
-package com.epam.atm.tests.pageobjects;
+package com.epam.atm.tests.pageobjects.folders;
 
+import com.epam.atm.tests.pageobjects.BasePage;
+import com.epam.atm.tests.pageobjects.actions.CheckEmailPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class DraftFolderPage extends PageObject {
+public class DraftFolderPage extends BasePage {
 
     //TODO: Not good idea to hardcode URL in locators. On the real project you could have several envs like qa.mail.google, dev.mail.google, etc.
     private By draftBy = By.xpath("//a[@href='https://mail.google.com/mail/u/0/#drafts']//parent::span");
