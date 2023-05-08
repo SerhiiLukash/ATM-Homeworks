@@ -1,8 +1,7 @@
 package com.epam.atm.tests.featuretest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.By;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,15 +9,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class BaseTest {
     protected WebDriver driver;
 
-    // TODO: Seems never used. - FIXED
 
-    // TODO: seems setup could be mark with some Before annotations. - FIXED
-    @BeforeAll
+    @BeforeEach
     public void setupClass() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        // TODO: Why do we need incognito mode? - Because, I have a lot of google accounts and without
-        // incognito mode there are auto login or other issues appear
+        // Incognito mode is used to prevent auto login to another google account
         options.addArguments("--incognito");
 
         driver = new ChromeDriver(options);

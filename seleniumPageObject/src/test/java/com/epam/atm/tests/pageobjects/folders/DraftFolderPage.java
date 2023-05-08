@@ -7,23 +7,28 @@ import org.openqa.selenium.WebDriver;
 
 public class DraftFolderPage extends BasePage {
 
-    //TODO: Not good idea to hardcode URL in locators. On the real project you could have several envs like qa.mail.google, dev.mail.google, etc.
-    private By draftBy = By.xpath("//a[@href='https://mail.google.com/mail/u/0/#drafts']//parent::span");
+    private By draftBy = By.xpath("//a[contains(@href,'drafts')]//parent::span");
     private By draftFolderBy = By.xpath("//*[text()='Drafts']");
     private By clickOnRowBy = By.xpath("//*[@class='bog']//span[text()='test subject']");
+
+    private String subjectString = "//*[@class='bog']//span[text()='%s']";
 
     public DraftFolderPage(WebDriver driver) {
         super(driver);
     }
 
-    public CheckEmailPage openMailInDrafts() {
+    public CheckEmailPage openMailInDrafts(String subject) {
 
-        driver.findElement(draftBy).click();
-        waitElementToBeClicable(draftFolderBy);
-        driver.findElement(draftFolderBy).click();
-        waitElementToBeClicable(clickOnRowBy);
-        driver.findElement(clickOnRowBy).click();
+        By locator = getCheckBySubject(subject);
+        waitElementToBeClicable(locator);
+        driver.findElement(locator).click();
         return new CheckEmailPage(driver);
+    }
+
+    public By getCheckBySubject(String subject) {
+        By locator = By.xpath(String.format(subjectString, subject));
+        waitElementToBeClicable(locator);
+        return locator;
     }
 }
 

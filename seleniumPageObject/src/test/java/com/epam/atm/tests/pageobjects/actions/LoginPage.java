@@ -1,7 +1,6 @@
 package com.epam.atm.tests.pageobjects.actions;
 
 import com.epam.atm.tests.pageobjects.BasePage;
-import com.epam.atm.tests.pageobjects.actions.ComposePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,8 +21,7 @@ public class LoginPage extends BasePage {
 
 
     public ComposePage loginValidUser(String textName, String password) {
-        // TODO: I suggest to move navigation to upper logic and leave here only stuff related to actual login.
-       // FIXED
+
         driver.findElement(textNameBy).sendKeys(textName);
         driver.findElement(nextNameBy).click();
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(passwordBy));

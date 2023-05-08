@@ -1,7 +1,7 @@
 package com.epam.atm.tests.pageobjects.actions;
 
+import com.epam.atm.tests.pageobjects.BaseObjects.Email;
 import com.epam.atm.tests.pageobjects.BasePage;
-import com.epam.atm.tests.pageobjects.folders.DraftFolderPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -17,20 +17,20 @@ public class FillEmailPage extends BasePage {
         super(driver);
     }
 
-    // TODO: Could introduce class 'email' and use it instead of 3 strings.
-    public void fillInEmail(String body, String subject, String recipient) {
+
+    public void fillInEmail(Email email) {
 
         waitElementToBeClicable(textBodyBy);
-        driver.findElement(textBodyBy).sendKeys(body);
-        driver.findElement(textSubjectBy).sendKeys(subject);
+        driver.findElement(textBodyBy).sendKeys(email.getBody());
+        driver.findElement(textSubjectBy).sendKeys(email.getSubject());
         driver.findElement(fieldRecipientBy).click();
-        driver.findElement(textRecipientBy).sendKeys(recipient);
+        driver.findElement(textRecipientBy).sendKeys(email.getRecipient());
 
     }
 
-    public DraftFolderPage close() {
+    public GoToDraftFolderPage close() {
         driver.findElement(crossSignBy).click();
-        return new DraftFolderPage(driver);
+        return new GoToDraftFolderPage(driver);
     }
 
     public By getTextBodyBy() {

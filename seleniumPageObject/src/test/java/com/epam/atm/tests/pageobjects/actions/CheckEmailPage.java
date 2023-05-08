@@ -7,17 +7,18 @@ import org.openqa.selenium.WebDriver;
 
 public class CheckEmailPage extends BasePage {
 
-    // TODO: it is not good idea to hardcode email in locators. It should be dynamic.
-    private By emailBy = By.xpath("//*[@email='vasiliy.luk52@gmail.com']");
+
+    private String emailBy = "//*[@email='%s']";
     private By sendButtonBy = By.xpath("//div[text()='Send']");
 
     public CheckEmailPage(WebDriver driver) {
         super(driver);
     }
 
-    public By getEmailBy() {
-        waitElementToBeClicable(emailBy);
-        return emailBy;
+    public By getEmailBy(String email) {
+        By locator = By.xpath(String.format(emailBy, email));
+        waitElementToBeClicable(locator);
+        return locator;
     }
 
     public SentFolderPage send() {
