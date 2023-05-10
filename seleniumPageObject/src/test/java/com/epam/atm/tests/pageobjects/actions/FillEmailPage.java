@@ -4,6 +4,9 @@ import com.epam.atm.tests.pageobjects.BaseObjects.Email;
 import com.epam.atm.tests.pageobjects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import java.time.Duration;
 
 public class FillEmailPage extends BasePage {
 
@@ -20,12 +23,22 @@ public class FillEmailPage extends BasePage {
 
     public void fillInEmail(Email email) {
 
-        waitElementToBeClicable(textBodyBy);
-        driver.findElement(textBodyBy).sendKeys(email.getBody());
+       waitElementToBeClicable(textBodyBy);
+     /*    driver.findElement(textBodyBy).sendKeys(email.getBody());
         driver.findElement(textSubjectBy).sendKeys(email.getSubject());
         driver.findElement(fieldRecipientBy).click();
-        driver.findElement(textRecipientBy).sendKeys(email.getRecipient());
+        driver.findElement(textRecipientBy).sendKeys(email.getRecipient()); */
 
+        new Actions(driver)
+                .clickAndHold(driver.findElement(textBodyBy))
+                .sendKeys(email.getBody())
+                .clickAndHold(driver.findElement(textSubjectBy))
+                .sendKeys(email.getSubject())
+                .pause(Duration.ofSeconds(1))
+                .click(driver.findElement(fieldRecipientBy))
+                .clickAndHold(driver.findElement(textRecipientBy))
+                .sendKeys(email.getRecipient())
+                .perform();
     }
 
     public GoToDraftFolderPage close() {

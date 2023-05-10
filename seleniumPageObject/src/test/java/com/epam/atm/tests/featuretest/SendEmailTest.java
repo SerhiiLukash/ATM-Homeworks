@@ -6,6 +6,9 @@ import com.epam.atm.tests.pageobjects.folders.DraftFolderPage;
 import com.epam.atm.tests.pageobjects.folders.SentFolderPage;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.JavascriptExecutor;
+
+import java.net.MalformedURLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,10 +25,16 @@ public class SendEmailTest extends BaseTest {
     private final static String recipient = "vasiliy.luk52@gmail.com";
     private final static String url = "https://accounts.google.com/v3/signin/identifier?dsh=S-2013150678%3A1681917281681000&continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&ifkv=AQMjQ7Q-PoFk6chKa8ZqDP26RRfBQcV6uu7-BXwoq6EjmrXJANCLsifjG2KvylpNlLvrLSEW0CNgOw&osid=1&passive=1209600&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin";
 
+    // Complex actions are used in fillInEmail class and LoginPage class,
+    // JavaScript Executor is used in CheckEmailPage class and @Test
+
     @Test
-    public void testLogin() {
+    public void testLogin() throws MalformedURLException {
+        setupDriver(Driver.Chrome);
         Email email = new Email(recipient, subject, body);
-        driver.get(url);
+        //   driver.get(url);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.location =\"" + url + "\"");
         LoginPage loginPage = new LoginPage(driver);
         ComposePage composePage = loginPage.loginValidUser(textName, password);
         Assert.assertTrue(isUserLogin(composePage)); // Check if user is logged in
