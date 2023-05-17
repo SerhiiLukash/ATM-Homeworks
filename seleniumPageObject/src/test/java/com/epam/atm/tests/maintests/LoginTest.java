@@ -46,14 +46,8 @@ public class LoginTest extends CommonConditions {
         LoginPage loginPage = new LoginPage(driver);
         ComposePage composePage = loginPage.loginValidUser(UserCreator.withoutFile());
         Assert.assertTrue(isUserLogin(composePage)); // Check if user is logged in
-       takeScreenShot("test.png");
+
     }
-    public  void takeScreenShot(String fname) throws Exception {
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        String imageFileDir = System.getProperty("selenium.screenshot.dir");
-        if (imageFileDir == null)
-            imageFileDir = System.getProperty("java.io.tmpdir");
-        FileUtils.copyFile(scrFile, new File(imageFileDir, fname));
-    }
+
 
 }

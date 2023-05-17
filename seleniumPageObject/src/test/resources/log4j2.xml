@@ -2,10 +2,15 @@
 <Configuration>
     <Appenders>
         <Console name="Console">
-                    <PatternLayout pattern="%m%n"/>
+                    <PatternLayout>
+            <Pattern> %d %p %c{2} [%t] %1 %m%n</Pattern>
+            </PatternLayout>
                 </Console>
-        <File name="File" fileName="target/logs/automation.log"></File>
-        <PatternLayout pattern="%m%n"/>
+        <File name="File" fileName="target/logs/automation.log">
+            <PatternLayout>
+                <Pattern> %d %p %c{2} [%t] %1 %m%n</Pattern>
+            </PatternLayout>
+        </File>
             </Appenders>
     <Loggers>
         <Root level="trace">

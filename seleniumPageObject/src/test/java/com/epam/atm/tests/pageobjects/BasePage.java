@@ -34,7 +34,6 @@ public class BasePage {
         return driver.findElement(elementBy).isDisplayed();
     }
 
-    public Logger logger
-            = Logger.getLogger(BasePage.class.getName());
+
 
 }

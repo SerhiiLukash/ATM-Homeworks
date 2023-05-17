@@ -2,6 +2,8 @@ package com.epam.atm.tests.pageobjects.actions;
 
 import com.epam.atm.tests.model.User;
 import com.epam.atm.tests.pageobjects.BasePage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -21,7 +23,7 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
-
+    private final Logger logger = LogManager.getRootLogger();
 
     public ComposePage loginValidUser(User user) {
 
@@ -47,7 +49,7 @@ public class LoginPage extends BasePage {
                 .click(driver.findElement(nextNameBy))
                 .perform();
 
-        logger.info("User is logged in");
+        logger.info("User " + user.getUsername() + " is logged in");
         return new ComposePage(driver);
     }
 }
