@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.logging.Logger;
 
 
 public class BasePage {
@@ -32,4 +33,8 @@ public class BasePage {
 
         return driver.findElement(elementBy).isDisplayed();
     }
+
+    public Logger logger
+            = Logger.getLogger(BasePage.class.getName());
+
 }
