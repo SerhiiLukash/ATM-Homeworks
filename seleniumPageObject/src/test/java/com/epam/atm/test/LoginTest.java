@@ -35,6 +35,7 @@ public class LoginTest extends CommonConditions {
         Assert.assertTrue(LoginUtils.isUserLogin(composePage)); // Check if user is logged in
 
     }
+    public static WebDriver getDriver(){return  driver;}
 
 
 }
