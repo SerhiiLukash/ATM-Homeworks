@@ -1,6 +1,6 @@
 package com.epam.atm.pageobjects.actions;
 
-import com.epam.atm.model.User;
+import com.epam.atm.model.user.User;
 import com.epam.atm.pageobjects.BasePage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,6 +1,6 @@
 package com.epam.atm.pageobjects.actions;
 
-import com.epam.atm.pageobjects.BaseObjects.Email;
+import com.epam.atm.model.Email;
 import com.epam.atm.pageobjects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

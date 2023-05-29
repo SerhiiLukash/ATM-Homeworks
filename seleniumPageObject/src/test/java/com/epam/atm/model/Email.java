@@ -1,4 +1,4 @@
-package com.epam.atm.pageobjects.BaseObjects;
+package com.epam.atm.model;
 
 import org.openqa.selenium.WebDriver;
 

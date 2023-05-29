@@ -1,4 +1,4 @@
-package com.epam.atm.model;
+package com.epam.atm.model.user;
 
 public class User {
     private String username;

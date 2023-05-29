@@ -1,8 +1,8 @@
 package com.epam.atm.test;
 
-import com.epam.atm.pageobjects.BaseObjects.Email;
+import com.epam.atm.model.Email;
 import com.epam.atm.pageobjects.actions.*;
-import com.epam.atm.service.UserCreator;
+import com.epam.atm.model.user.UserFactory;
 
 import com.epam.atm.pageobjects.folders.DraftFolderPage;
 import com.epam.atm.pageobjects.folders.SentFolderPage;
@@ -41,7 +41,7 @@ public class SendEmailTest extends CommonConditions {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.location =\"" + URL + "\"");
         LoginPage loginPage = new LoginPage(driver);
-        ComposePage composePage = loginPage.loginValidUser(UserCreator.withCredentials());
+        ComposePage composePage = loginPage.loginValidUser(getUserFactory(true).createUser());
         Assert.assertTrue(LoginUtils.isUserLogin(composePage)); // Check if user is logged in
         FillEmailPage fillEmailPage = composePage.compose();
         fillEmailPage.fillInEmail(email);

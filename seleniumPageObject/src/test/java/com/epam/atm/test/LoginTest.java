@@ -1,8 +1,9 @@
 package com.epam.atm.test;
 
+import com.epam.atm.model.user.UserWithCredentialsCreator;
 import com.epam.atm.pageobjects.actions.ComposePage;
 import com.epam.atm.pageobjects.actions.LoginPage;
-import com.epam.atm.service.UserCreator;
+import com.epam.atm.model.user.UserFactory;
 
 
 import com.epam.atm.utils.LoginUtils;
@@ -31,7 +32,7 @@ public class LoginTest extends CommonConditions {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.location =\"" + url + "\"");
         LoginPage loginPage = new LoginPage(driver);
-        ComposePage composePage = loginPage.loginValidUser(UserCreator.withoutFile());
+        ComposePage composePage = loginPage.loginValidUser(getUserFactory(false).createUser());
         Assert.assertTrue(LoginUtils.isUserLogin(composePage)); // Check if user is logged in
 
     }
